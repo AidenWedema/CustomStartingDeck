@@ -1,0 +1,11 @@
+﻿{
+  "CUSTOMSTARTINGDECK.mod_title": "Custom Starting Deck",
+  
+  "CUSTOMSTARTINGDECK-DECK_SIZE.title": "Deck Size",
+  "CUSTOMSTARTINGDECK-DECK_SIZE.hover.title": "Deck Size",
+  "CUSTOMSTARTINGDECK-DECK_SIZE.hover.desc": "The number of cards in your deck",
+
+  "CUSTOMSTARTINGDECK-ALLOW_DUPLICATES.title": "Allow Duplicates",
+  "CUSTOMSTARTINGDECK-ALLOW_DUPLICATES.hover.title": "Allow Duplicates",
+  "CUSTOMSTARTINGDECK-ALLOW_DUPLICATES.hover.desc": "Do you want to select multiple of the same card? (This will make it so you have to select every card separately)"
+}

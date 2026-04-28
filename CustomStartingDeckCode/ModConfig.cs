@@ -9,4 +9,7 @@ public class ModConfig : SimpleModConfig
     
     [ConfigHoverTip]
     public static bool AllowDuplicates { get; set; } = false;
+    
+    [ConfigHoverTip]
+    public static bool StartRelics { get; set; } = false;
 }

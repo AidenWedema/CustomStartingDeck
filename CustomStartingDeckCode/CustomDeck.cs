@@ -1,21 +1,14 @@
-﻿using System.Globalization;
-using MegaCrit.Sts2.Core.CardSelection;
+﻿using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Events;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Modifiers;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Rewards;
 
 namespace CustomStartingDeck.CustomStartingDeckCode;
 
@@ -34,9 +27,14 @@ public class CustomDeck : ModifierModel
         ModelDb.Card<Sloth>(),
     ];
 
+    private static IEnumerable<RelicModel> blacklistedRelics =>
+    [
+        ModelDb.Relic<DeprecatedRelic>()
+    ];
+
     public override Func<Task> GenerateNeowOption(EventModel eventModel)
     {
-        return (Func<Task>) (() => ChooseCards(eventModel.Owner));
+        return (Func<Task>) (() => ChooseCards(eventModel.Owner!));
     }
 
     private static async Task ChooseCards(Player player)
@@ -91,6 +89,18 @@ public class CustomDeck : ModifierModel
         if (!ModConfig.AllowDuplicates) await SelectCard(player, cardpool, amountOfCards);  // If duplicates are not allowed, select all cards in the deck at once
         else for (var i = 0; i < amountOfCards; i++)    // If duplicates are allowed, pick every card separately
             await SelectCard(player, cardpool, 1);
+        
+        // Show a relic reward if StartRelics is enabled
+        if (ModConfig.StartRelics)
+        {
+            // Get all relics
+            var relicpool = ModelDb.AllRelics.Except(blacklistedRelics).ToList();
+            // Make a list of relic rewards
+            List<Reward> relicRewards = [];
+            relicRewards.AddRange(relicpool.Select(relic => new RelicReward(relic.ToMutable(), player)));
+            // Show the rewards selection
+            await new RewardsSet(player).WithCustomRewards(relicRewards).Offer();
+        }
     }
 
     /// <summary>

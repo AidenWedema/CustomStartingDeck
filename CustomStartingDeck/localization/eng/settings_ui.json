@@ -7,5 +7,10 @@
 
   "CUSTOMSTARTINGDECK-ALLOW_DUPLICATES.title": "Allow Duplicates",
   "CUSTOMSTARTINGDECK-ALLOW_DUPLICATES.hover.title": "Allow Duplicates",
-  "CUSTOMSTARTINGDECK-ALLOW_DUPLICATES.hover.desc": "Do you want to select multiple of the same card? (This will make it so you have to select every card separately)"
+  "CUSTOMSTARTINGDECK-ALLOW_DUPLICATES.hover.desc": "Do you want to select multiple of the same card? (This will make it so you have to select every card separately)",
+  
+
+  "CUSTOMSTARTINGDECK-START_RELICS.title": "Start With Relics",
+  "CUSTOMSTARTINGDECK-START_RELICS.hover.title": "Start With Relics",
+  "CUSTOMSTARTINGDECK-START_RELICS.hover.desc": "Choose any number of relics to start your run with"
 }

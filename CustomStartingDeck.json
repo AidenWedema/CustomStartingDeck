@@ -3,7 +3,7 @@
   "name": "Custom Starting Deck",
   "author": "KindAiden",
   "description": "Adds a custom run modifier that let's you pick any card to put into your deck.\nChange the size of your deck in the mod configuration.\nCredits to Pikcube for making the scripts used to add new custom run modifiers.",
-  "version": "v1.0.0",
+  "version": "v1.0.1",
   "has_pck": true,
   "has_dll": true,
   "dependencies": ["BaseLib"],
